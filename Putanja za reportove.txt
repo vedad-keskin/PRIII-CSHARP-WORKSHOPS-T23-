@@ -1,0 +1,4 @@
+frmIzvjestaj -> InitializeComponent() -> this.Controls.Add(reportViewer1); 
+rptIzvjestaj -> Proprepties -> Build Action -> Embedded Resource
+reportViewer -> LocalReport -> ReportEmbeddenResource = DLWMS.WinForms.IspitIB180079.rptIzvjestajIB180079.rdlc 
+reportViewer -> Properties -> docked -> filled 
