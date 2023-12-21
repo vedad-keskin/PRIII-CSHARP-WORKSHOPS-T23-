@@ -7,7 +7,6 @@ namespace DLWMS.Data
 {
     public class Student
     {
-        DLWMSDbContext db = new DLWMSDbContext();
         public int Id { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
@@ -18,11 +17,7 @@ namespace DLWMS.Data
         public int GodinaStudija { get; set; }
         public byte[] Slika { get; set; }
         public bool Aktivan { get; set; }
-        public Spol Spol { get; set; }
-
-        public string ImePrezime => $"{Ime} {Prezime}";
-
-        public double Prosjek => db.StudentiPredmeti.Where(x => x.StudentId == Id).ToList() == null ? 0 :   db.StudentiPredmeti.Where(x => x.StudentId == Id).Average(x => x.Ocjena);
+        public Spol Spol { get; set; }       
 
         public override string ToString()
         {

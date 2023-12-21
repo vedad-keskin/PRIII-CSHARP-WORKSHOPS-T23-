@@ -23,7 +23,7 @@ namespace DLWMS.WinForms.IspitIB180079
 
         private void frmPretragaIB180079_Load(object sender, EventArgs e)
         {
-            
+
             dgvStudenti.AutoGenerateColumns = false;
             cbSpol.DataSource = db.Spolovi.ToList();
             UcitajSve();
@@ -33,37 +33,13 @@ namespace DLWMS.WinForms.IspitIB180079
         {
             studenti = db.Studenti.Include("Spol").ToList();
 
-            if(studenti != null)
+            if (studenti != null)
             {
-                var tblStudenti = new DataTable();
-                tblStudenti.Columns.Add("Indeks");
-                tblStudenti.Columns.Add("ImePrezime");
-                tblStudenti.Columns.Add("Prosjek");
-                tblStudenti.Columns.Add("Datum");
-                tblStudenti.Columns.Add("Aktivan");
-
-                for (int i = 0; i < studenti.Count(); i++)
-                {
-                    var student = studenti[i];
-
-
-
-
-                    var Red = tblStudenti.NewRow();
-                    Red["Indeks"] = student.BrojIndeksa;
-                    Red["ImePrezime"] = student.ToString();
-                    Red["Prosjek"] = db.StudentiPredmeti.Where(x => x.StudentId == student.Id).Average(x => x.Ocjena).ToString();
-                    Red["Datum"] = student.DatumRodjenja.ToString();
-                    Red["Aktivan"] = student.Aktivan;
-                    tblStudenti.Rows.Add(Red);
-
-                }
-
 
 
 
                 dgvStudenti.DataSource = null;
-                dgvStudenti.DataSource = tblStudenti;
+                dgvStudenti.DataSource = studenti;
             }
         }
         private void UcitajStudente()
@@ -73,40 +49,16 @@ namespace DLWMS.WinForms.IspitIB180079
             var datumDo = dtpDatumDo.Value;
             var spol = cbSpol.SelectedItem.ToString();
 
-            studenti = db.Studenti.Include("Spol").Where(x=> (x.DatumRodjenja >= datumOd && x.DatumRodjenja <= datumDo)  && (x.Spol.Naziv == spol))
+            studenti = db.Studenti.Include("Spol").Where(x => (x.DatumRodjenja >= datumOd && x.DatumRodjenja <= datumDo) && (x.Spol.Naziv == spol))
                 .ToList();
 
             if (studenti != null)
             {
-                var tblStudenti = new DataTable();
-                tblStudenti.Columns.Add("Indeks");
-                tblStudenti.Columns.Add("ImePrezime");
-                tblStudenti.Columns.Add("Prosjek");
-                tblStudenti.Columns.Add("Datum");
-                tblStudenti.Columns.Add("Aktivan");
-
-                for (int i = 0; i < studenti.Count(); i++)
-                {
-                    var student = studenti[i];
-
-
-
-
-                    var Red = tblStudenti.NewRow();
-                    Red["Indeks"] = student.BrojIndeksa;
-                    Red["ImePrezime"] = student.ToString();
-                    Red["Prosjek"] = db.StudentiPredmeti.Where(x => x.StudentId == student.Id).Average(x => x.Ocjena).ToString();
-                    Red["Datum"] = student.DatumRodjenja.ToString();
-                    Red["Aktivan"] = student.Aktivan;
-                    tblStudenti.Rows.Add(Red);
-
-                }
-
 
 
 
                 dgvStudenti.DataSource = null;
-                dgvStudenti.DataSource = tblStudenti;
+                dgvStudenti.DataSource = studenti;
             }
             //if(studenti.Count() == 0)
             //{
@@ -136,7 +88,7 @@ namespace DLWMS.WinForms.IspitIB180079
         {
             var student = studenti[e.RowIndex];
 
-            if(e.ColumnIndex == 5)
+            if (e.ColumnIndex == 5)
             {
                 frmUvjerenjaIB180079 frmUvjerenja = new frmUvjerenjaIB180079(student);
                 frmUvjerenja.ShowDialog();

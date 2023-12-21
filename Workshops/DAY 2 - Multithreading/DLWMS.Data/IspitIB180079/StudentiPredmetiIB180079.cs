@@ -10,14 +10,14 @@ namespace DLWMS.Data.IspitIB180079
     {
         public int Id { get; set; }
         public int StudentId { get; set; }
-        public Student Student { get; set; }
+        public Student Student { get; set; } // ime prezime indeks
+
         public int PredmetId { get; set; }
         public PredmetiIB180079 Predmet { get; set; }
         public int Ocjena { get; set; }
         public DateTime Datum { get; set; }
 
-        // public string Indeks => Student.BrojIndeksa == null ? "" : Student.BrojIndeksa;
-        public string Indeks => Student?.BrojIndeksa ?? "";
+
 
     }
 }

@@ -34,36 +34,15 @@ namespace DLWMS.WinForms.IspitIB180079
             studentiPredmeti = db.StudentiPredmeti.Include("Predmet").Include("Student").ToList();
 
 
-            if(studentiPredmeti != null)
+            if (studentiPredmeti != null)
             {
 
-                var tblStudentiPredmeti = new DataTable();
-                tblStudentiPredmeti.Columns.Add("Indeks");
-                tblStudentiPredmeti.Columns.Add("ImePrezime");
-                tblStudentiPredmeti.Columns.Add("Predmet");
-                tblStudentiPredmeti.Columns.Add("Ocjena");
-                tblStudentiPredmeti.Columns.Add("Datum");
 
-                for (int i = 0; i < studentiPredmeti.Count(); i++)
-                {
-                    var studentPredmet = studentiPredmeti[i];
-
-
-
-                    var Red = tblStudentiPredmeti.NewRow();
-                    Red["Indeks"] = studentPredmet.Student.BrojIndeksa;
-                    Red["ImePrezime"] = studentPredmet.Student.ToString();
-                    Red["Predmet"] = studentPredmet.Predmet.ToString();
-                    Red["Ocjena"] = studentPredmet.Ocjena.ToString();
-                    Red["Datum"] = studentPredmet.Datum.ToString();
-                    tblStudentiPredmeti.Rows.Add(Red);
-
-                }
 
 
 
                 dgvStudentiPredmeti.DataSource = null;
-                dgvStudentiPredmeti.DataSource = tblStudentiPredmeti;
+                dgvStudentiPredmeti.DataSource = studentiPredmeti;
             }
 
         }
@@ -76,48 +55,27 @@ namespace DLWMS.WinForms.IspitIB180079
             var DatumOd = dtpDatumOd.Value;
             var DatumDo = dtpDatumDo.Value;
 
-            studentiPredmeti = db.StudentiPredmeti.Include("Student").Include("Predmet").Where(x=> 
-            (x.Ocjena >= OcjenaOd && x.Ocjena <= OcjenaDo )  && (x.Datum >= DatumOd && x.Datum <= DatumDo)
-            ) .ToList();
-          
-            if(studentiPredmeti != null)
+            studentiPredmeti = db.StudentiPredmeti.Include("Student").Include("Predmet").Where(x =>
+            (x.Ocjena >= OcjenaOd && x.Ocjena <= OcjenaDo) && (x.Datum >= DatumOd && x.Datum <= DatumDo)
+            ).ToList();
+
+            if (studentiPredmeti != null)
             {
-                var tblStudentiPredmeti = new DataTable();
-                tblStudentiPredmeti.Columns.Add("Indeks");
-                tblStudentiPredmeti.Columns.Add("ImePrezime");
-                tblStudentiPredmeti.Columns.Add("Predmet");
-                tblStudentiPredmeti.Columns.Add("Ocjena");
-                tblStudentiPredmeti.Columns.Add("Datum");
 
-                for (int i = 0; i < studentiPredmeti.Count(); i++)
-                {
-                    var studentPredmet = studentiPredmeti[i];
-
-
-
-
-                    var Red = tblStudentiPredmeti.NewRow();
-                    Red["Indeks"] = studentPredmet.Student.BrojIndeksa;
-                    Red["ImePrezime"] = studentPredmet.Student.ToString();
-                    Red["Predmet"] = studentPredmet.Predmet.ToString();
-                    Red["Ocjena"] = studentPredmet.Ocjena.ToString();
-                    Red["Datum"] = studentPredmet.Datum.ToString();
-                    tblStudentiPredmeti.Rows.Add(Red);
-                }
 
 
 
                 dgvStudentiPredmeti.DataSource = null;
-                dgvStudentiPredmeti.DataSource = tblStudentiPredmeti;
+                dgvStudentiPredmeti.DataSource = studentiPredmeti;
             }
-//            Ukoliko ne postoji niti jedan student koji zadovoljava uslove pretrage, korisnika je
-//            potrebno obavijestiti adekvatnom porukom npr: U periodu od 17.02.1999 –
-//            17.02.2023.godine ne postoje evidentirane ocjene u opsegu od 6 do 9 za bilo kojeg
-//            studenta.
+            //            Ukoliko ne postoji niti jedan student koji zadovoljava uslove pretrage, korisnika je
+            //            potrebno obavijestiti adekvatnom porukom npr: U periodu od 17.02.1999 –
+            //            17.02.2023.godine ne postoje evidentirane ocjene u opsegu od 6 do 9 za bilo kojeg
+            //            studenta.
 
-            if(studentiPredmeti.Count() == 0)
+            if (studentiPredmeti.Count() == 0)
             {
-                MessageBox.Show($"U periodu od {dtpDatumOd.Value} - {dtpDatumDo.Value} .godine ne postoje evidentirane ocjene u opsegu od {cbOcjenaOd.SelectedItem} do {cbOcjenaDo.SelectedItem} za bilo kojeg studenta.","Informacija",MessageBoxButtons.OKCancel,MessageBoxIcon.Information);
+                MessageBox.Show($"U periodu od {dtpDatumOd.Value} - {dtpDatumDo.Value} .godine ne postoje evidentirane ocjene u opsegu od {cbOcjenaOd.SelectedItem} do {cbOcjenaDo.SelectedItem} za bilo kojeg studenta.", "Informacija", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             }
 
         }
@@ -154,7 +112,7 @@ namespace DLWMS.WinForms.IspitIB180079
             // ako pravimo custom colone (mislim da ovaj radi za oba )
             var studentP = studentiPredmeti[e.RowIndex];
 
-            if(e.ColumnIndex == 5)
+            if (e.ColumnIndex == 5)
             {
                 frmPorukeIB180079 frmPoruke = new frmPorukeIB180079(studentP.Student);
                 frmPoruke.ShowDialog();

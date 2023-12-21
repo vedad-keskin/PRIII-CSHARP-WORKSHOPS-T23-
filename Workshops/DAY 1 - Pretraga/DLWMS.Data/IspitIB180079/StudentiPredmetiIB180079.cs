@@ -16,8 +16,6 @@ namespace DLWMS.Data.IspitIB180079
         public int Ocjena { get; set; }
         public DateTime Datum { get; set; }
 
-        // public string Indeks => Student.BrojIndeksa == null ? "" : Student.BrojIndeksa;
-        public string Indeks => Student?.BrojIndeksa ?? "";
 
     }
 }

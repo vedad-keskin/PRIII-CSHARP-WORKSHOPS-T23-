@@ -28,209 +28,186 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvStudentiPredmeti = new System.Windows.Forms.DataGridView();
-            this.Indeks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Predmet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ocjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Poruke = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dtpDatumDo = new System.Windows.Forms.DateTimePicker();
-            this.dtpDatumOd = new System.Windows.Forms.DateTimePicker();
-            this.cbOcjenaDo = new System.Windows.Forms.ComboBox();
-            this.cbOcjenaOd = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStudentiPredmeti)).BeginInit();
-            this.SuspendLayout();
+            dgvStudentiPredmeti = new DataGridView();
+            dtpDatumDo = new DateTimePicker();
+            dtpDatumOd = new DateTimePicker();
+            cbOcjenaDo = new ComboBox();
+            cbOcjenaOd = new ComboBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            Indeks = new DataGridViewTextBoxColumn();
+            Student = new DataGridViewTextBoxColumn();
+            Predmet = new DataGridViewTextBoxColumn();
+            Ocjena = new DataGridViewTextBoxColumn();
+            Datum = new DataGridViewTextBoxColumn();
+            Poruke = new DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvStudentiPredmeti).BeginInit();
+            SuspendLayout();
             // 
             // dgvStudentiPredmeti
             // 
-            this.dgvStudentiPredmeti.AllowUserToAddRows = false;
-            this.dgvStudentiPredmeti.AllowUserToDeleteRows = false;
-            this.dgvStudentiPredmeti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStudentiPredmeti.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Indeks,
-            this.ImePrezime,
-            this.Predmet,
-            this.Ocjena,
-            this.Datum,
-            this.Poruke});
-            this.dgvStudentiPredmeti.Location = new System.Drawing.Point(12, 44);
-            this.dgvStudentiPredmeti.Name = "dgvStudentiPredmeti";
-            this.dgvStudentiPredmeti.ReadOnly = true;
-            this.dgvStudentiPredmeti.RowTemplate.Height = 25;
-            this.dgvStudentiPredmeti.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStudentiPredmeti.Size = new System.Drawing.Size(891, 256);
-            this.dgvStudentiPredmeti.TabIndex = 12;
-            this.dgvStudentiPredmeti.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudentiPredmeti_CellContentClick);
-            // 
-            // Indeks
-            // 
-            this.Indeks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Indeks.DataPropertyName = "Indeks";
-            this.Indeks.HeaderText = "Indeks";
-            this.Indeks.Name = "Indeks";
-            this.Indeks.ReadOnly = true;
-            // 
-            // ImePrezime
-            // 
-            this.ImePrezime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ImePrezime.DataPropertyName = "ImePrezime";
-            this.ImePrezime.HeaderText = "Ime i prezime";
-            this.ImePrezime.Name = "ImePrezime";
-            this.ImePrezime.ReadOnly = true;
-            // 
-            // Predmet
-            // 
-            this.Predmet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Predmet.DataPropertyName = "Predmet";
-            this.Predmet.HeaderText = "Predmet";
-            this.Predmet.Name = "Predmet";
-            this.Predmet.ReadOnly = true;
-            // 
-            // Ocjena
-            // 
-            this.Ocjena.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ocjena.DataPropertyName = "Ocjena";
-            this.Ocjena.HeaderText = "Ocjena";
-            this.Ocjena.Name = "Ocjena";
-            this.Ocjena.ReadOnly = true;
-            // 
-            // Datum
-            // 
-            this.Datum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Datum.DataPropertyName = "Datum";
-            this.Datum.HeaderText = "DatumPolaganja";
-            this.Datum.Name = "Datum";
-            this.Datum.ReadOnly = true;
-            // 
-            // Poruke
-            // 
-            this.Poruke.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Poruke.HeaderText = "";
-            this.Poruke.Name = "Poruke";
-            this.Poruke.ReadOnly = true;
-            this.Poruke.Text = "Poruke";
-            this.Poruke.UseColumnTextForButtonValue = true;
+            dgvStudentiPredmeti.AllowUserToAddRows = false;
+            dgvStudentiPredmeti.AllowUserToDeleteRows = false;
+            dgvStudentiPredmeti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStudentiPredmeti.Columns.AddRange(new DataGridViewColumn[] { Indeks, Student, Predmet, Ocjena, Datum, Poruke });
+            dgvStudentiPredmeti.Location = new Point(12, 44);
+            dgvStudentiPredmeti.Name = "dgvStudentiPredmeti";
+            dgvStudentiPredmeti.ReadOnly = true;
+            dgvStudentiPredmeti.RowTemplate.Height = 25;
+            dgvStudentiPredmeti.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStudentiPredmeti.Size = new Size(891, 256);
+            dgvStudentiPredmeti.TabIndex = 12;
+            dgvStudentiPredmeti.CellContentClick += dgvStudentiPredmeti_CellContentClick;
             // 
             // dtpDatumDo
             // 
-            this.dtpDatumDo.Location = new System.Drawing.Point(711, 12);
-            this.dtpDatumDo.Name = "dtpDatumDo";
-            this.dtpDatumDo.Size = new System.Drawing.Size(192, 23);
-            this.dtpDatumDo.TabIndex = 10;
-            this.dtpDatumDo.ValueChanged += new System.EventHandler(this.dtpDatumDo_ValueChanged);
+            dtpDatumDo.Location = new Point(711, 12);
+            dtpDatumDo.Name = "dtpDatumDo";
+            dtpDatumDo.Size = new Size(192, 23);
+            dtpDatumDo.TabIndex = 10;
+            dtpDatumDo.ValueChanged += dtpDatumDo_ValueChanged;
             // 
             // dtpDatumOd
             // 
-            this.dtpDatumOd.Location = new System.Drawing.Point(486, 12);
-            this.dtpDatumOd.Name = "dtpDatumOd";
-            this.dtpDatumOd.Size = new System.Drawing.Size(192, 23);
-            this.dtpDatumOd.TabIndex = 11;
-            this.dtpDatumOd.ValueChanged += new System.EventHandler(this.dtpDatumOd_ValueChanged);
+            dtpDatumOd.Location = new Point(486, 12);
+            dtpDatumOd.Name = "dtpDatumOd";
+            dtpDatumOd.Size = new Size(192, 23);
+            dtpDatumOd.TabIndex = 11;
+            dtpDatumOd.ValueChanged += dtpDatumOd_ValueChanged;
             // 
             // cbOcjenaDo
             // 
-            this.cbOcjenaDo.FormattingEnabled = true;
-            this.cbOcjenaDo.Items.AddRange(new object[] {
-            "10",
-            "9",
-            "8",
-            "7",
-            "6"});
-            this.cbOcjenaDo.Location = new System.Drawing.Point(227, 15);
-            this.cbOcjenaDo.Name = "cbOcjenaDo";
-            this.cbOcjenaDo.Size = new System.Drawing.Size(121, 23);
-            this.cbOcjenaDo.TabIndex = 8;
-            this.cbOcjenaDo.SelectedIndexChanged += new System.EventHandler(this.cbOcjenaDo_SelectedIndexChanged);
+            cbOcjenaDo.FormattingEnabled = true;
+            cbOcjenaDo.Items.AddRange(new object[] { "10", "9", "8", "7", "6" });
+            cbOcjenaDo.Location = new Point(227, 15);
+            cbOcjenaDo.Name = "cbOcjenaDo";
+            cbOcjenaDo.Size = new Size(121, 23);
+            cbOcjenaDo.TabIndex = 8;
+            cbOcjenaDo.SelectedIndexChanged += cbOcjenaDo_SelectedIndexChanged;
             // 
             // cbOcjenaOd
             // 
-            this.cbOcjenaOd.FormattingEnabled = true;
-            this.cbOcjenaOd.Items.AddRange(new object[] {
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.cbOcjenaOd.Location = new System.Drawing.Point(79, 15);
-            this.cbOcjenaOd.Name = "cbOcjenaOd";
-            this.cbOcjenaOd.Size = new System.Drawing.Size(121, 23);
-            this.cbOcjenaOd.TabIndex = 9;
-            this.cbOcjenaOd.SelectedIndexChanged += new System.EventHandler(this.cbOcjenaOd_SelectedIndexChanged);
+            cbOcjenaOd.FormattingEnabled = true;
+            cbOcjenaOd.Items.AddRange(new object[] { "6", "7", "8", "9", "10" });
+            cbOcjenaOd.Location = new Point(79, 15);
+            cbOcjenaOd.Name = "cbOcjenaOd";
+            cbOcjenaOd.Size = new Size(121, 23);
+            cbOcjenaOd.TabIndex = 9;
+            cbOcjenaOd.SelectedIndexChanged += cbOcjenaOd_SelectedIndexChanged;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(684, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(21, 15);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "do";
+            label4.AutoSize = true;
+            label4.Location = new Point(684, 15);
+            label4.Name = "label4";
+            label4.Size = new Size(21, 15);
+            label4.TabIndex = 4;
+            label4.Text = "do";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(354, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "položena u periodu od";
+            label3.AutoSize = true;
+            label3.Location = new Point(354, 18);
+            label3.Name = "label3";
+            label3.Size = new Size(126, 15);
+            label3.TabIndex = 5;
+            label3.Text = "položena u periodu od";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(206, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 15);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "do";
+            label2.AutoSize = true;
+            label2.Location = new Point(206, 18);
+            label2.Name = "label2";
+            label2.Size = new Size(21, 15);
+            label2.TabIndex = 6;
+            label2.Text = "do";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 15);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Ocjena od ";
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(64, 15);
+            label1.TabIndex = 7;
+            label1.Text = "Ocjena od ";
+            // 
+            // Indeks
+            // 
+            Indeks.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Indeks.DataPropertyName = "Indeks";
+            Indeks.HeaderText = "Indeks";
+            Indeks.Name = "Indeks";
+            Indeks.ReadOnly = true;
+            // 
+            // Student
+            // 
+            Student.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Student.DataPropertyName = "Student";
+            Student.HeaderText = "Ime i prezime";
+            Student.Name = "Student";
+            Student.ReadOnly = true;
+            // 
+            // Predmet
+            // 
+            Predmet.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Predmet.DataPropertyName = "Predmet";
+            Predmet.HeaderText = "Predmet";
+            Predmet.Name = "Predmet";
+            Predmet.ReadOnly = true;
+            // 
+            // Ocjena
+            // 
+            Ocjena.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Ocjena.DataPropertyName = "Ocjena";
+            Ocjena.HeaderText = "Ocjena";
+            Ocjena.Name = "Ocjena";
+            Ocjena.ReadOnly = true;
+            // 
+            // Datum
+            // 
+            Datum.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Datum.DataPropertyName = "Datum";
+            Datum.HeaderText = "DatumPolaganja";
+            Datum.Name = "Datum";
+            Datum.ReadOnly = true;
+            // 
+            // Poruke
+            // 
+            Poruke.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Poruke.HeaderText = "";
+            Poruke.Name = "Poruke";
+            Poruke.ReadOnly = true;
+            Poruke.Text = "Poruke";
+            Poruke.UseColumnTextForButtonValue = true;
             // 
             // frmPretragaIB180079
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 317);
-            this.Controls.Add(this.dgvStudentiPredmeti);
-            this.Controls.Add(this.dtpDatumDo);
-            this.Controls.Add(this.dtpDatumOd);
-            this.Controls.Add(this.cbOcjenaDo);
-            this.Controls.Add(this.cbOcjenaOd);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "frmPretragaIB180079";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pretraga";
-            this.Load += new System.EventHandler(this.frmPretragaIB180079_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStudentiPredmeti)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(914, 317);
+            Controls.Add(dgvStudentiPredmeti);
+            Controls.Add(dtpDatumDo);
+            Controls.Add(dtpDatumOd);
+            Controls.Add(cbOcjenaDo);
+            Controls.Add(cbOcjenaOd);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Name = "frmPretragaIB180079";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Pretraga";
+            Load += frmPretragaIB180079_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvStudentiPredmeti).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dgvStudentiPredmeti;
-        private DataGridViewTextBoxColumn Indeks;
-        private DataGridViewTextBoxColumn ImePrezime;
-        private DataGridViewTextBoxColumn Predmet;
-        private DataGridViewTextBoxColumn Ocjena;
-        private DataGridViewTextBoxColumn Datum;
-        private DataGridViewButtonColumn Poruke;
         private DateTimePicker dtpDatumDo;
         private DateTimePicker dtpDatumOd;
         private ComboBox cbOcjenaDo;
@@ -239,5 +216,11 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private DataGridViewTextBoxColumn Indeks;
+        private DataGridViewTextBoxColumn Student;
+        private DataGridViewTextBoxColumn Predmet;
+        private DataGridViewTextBoxColumn Ocjena;
+        private DataGridViewTextBoxColumn Datum;
+        private DataGridViewButtonColumn Poruke;
     }
 }
