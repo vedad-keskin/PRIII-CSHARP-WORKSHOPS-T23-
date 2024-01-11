@@ -28,44 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            labl = new Label();
+            label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             dtpDatumOd = new DateTimePicker();
-            dtpDatumDo = new DateTimePicker();
             dgvStudenti = new DataGridView();
-            cbSpol = new ComboBox();
             BrojIndeksa = new DataGridViewTextBoxColumn();
-            ImePrezime = new DataGridViewTextBoxColumn();
+            Student = new DataGridViewTextBoxColumn();
             Prosjek = new DataGridViewTextBoxColumn();
             DatumRodjenja = new DataGridViewTextBoxColumn();
             Aktivan = new DataGridViewCheckBoxColumn();
             Uvjerenja = new DataGridViewButtonColumn();
+            dtpDatumDo = new DateTimePicker();
+            cbSpol = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvStudenti).BeginInit();
             SuspendLayout();
             // 
-            // labl
+            // label1
             // 
-            labl.AutoSize = true;
-            labl.Location = new Point(12, 22);
-            labl.Name = "labl";
-            labl.Size = new Size(30, 15);
-            labl.TabIndex = 0;
-            labl.Text = "Spol";
+            label1.AutoSize = true;
+            label1.Location = new Point(185, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(109, 15);
+            label1.TabIndex = 0;
+            label1.Text = "rođen u periodu od";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(197, 22);
+            label2.Location = new Point(12, 9);
             label2.Name = "label2";
-            label2.Size = new Size(109, 15);
+            label2.Size = new Size(30, 15);
             label2.TabIndex = 0;
-            label2.Text = "rođen u periodu od";
+            label2.Text = "Spol";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(527, 22);
+            label3.Location = new Point(506, 9);
             label3.Name = "label3";
             label3.Size = new Size(21, 15);
             label3.TabIndex = 0;
@@ -73,62 +73,47 @@
             // 
             // dtpDatumOd
             // 
-            dtpDatumOd.Location = new Point(312, 19);
+            dtpDatumOd.Location = new Point(300, 6);
             dtpDatumOd.Name = "dtpDatumOd";
             dtpDatumOd.Size = new Size(200, 23);
             dtpDatumOd.TabIndex = 2;
-            dtpDatumOd.ValueChanged += dtpDatumOd_ValueChanged;
-            // 
-            // dtpDatumDo
-            // 
-            dtpDatumDo.Location = new Point(564, 19);
-            dtpDatumDo.Name = "dtpDatumDo";
-            dtpDatumDo.Size = new Size(200, 23);
-            dtpDatumDo.TabIndex = 2;
-            dtpDatumDo.ValueChanged += dtpDatumDo_ValueChanged;
+            dtpDatumOd.Value = new DateTime(1997, 1, 11, 17, 48, 0, 0);
+            dtpDatumOd.ValueChanged += dtpDatumDo_ValueChanged;
             // 
             // dgvStudenti
             // 
             dgvStudenti.AllowUserToAddRows = false;
             dgvStudenti.AllowUserToDeleteRows = false;
             dgvStudenti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudenti.Columns.AddRange(new DataGridViewColumn[] { BrojIndeksa, ImePrezime, Prosjek, DatumRodjenja, Aktivan, Uvjerenja });
-            dgvStudenti.Location = new Point(12, 57);
+            dgvStudenti.Columns.AddRange(new DataGridViewColumn[] { BrojIndeksa, Student, Prosjek, DatumRodjenja, Aktivan, Uvjerenja });
+            dgvStudenti.Location = new Point(12, 35);
             dgvStudenti.Name = "dgvStudenti";
             dgvStudenti.ReadOnly = true;
             dgvStudenti.RowTemplate.Height = 25;
             dgvStudenti.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStudenti.Size = new Size(752, 246);
+            dgvStudenti.Size = new Size(722, 195);
             dgvStudenti.TabIndex = 3;
             dgvStudenti.CellContentClick += dgvStudenti_CellContentClick;
             // 
-            // cbSpol
-            // 
-            cbSpol.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbSpol.FormattingEnabled = true;
-            cbSpol.Location = new Point(62, 18);
-            cbSpol.Name = "cbSpol";
-            cbSpol.Size = new Size(121, 23);
-            cbSpol.TabIndex = 4;
-            cbSpol.SelectedIndexChanged += cbSpol_SelectedIndexChanged;
-            // 
             // BrojIndeksa
             // 
+            BrojIndeksa.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             BrojIndeksa.DataPropertyName = "BrojIndeksa";
             BrojIndeksa.HeaderText = "Broj indeksa";
             BrojIndeksa.Name = "BrojIndeksa";
             BrojIndeksa.ReadOnly = true;
             // 
-            // ImePrezime
+            // Student
             // 
-            ImePrezime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ImePrezime.DataPropertyName = "ImePrezime";
-            ImePrezime.HeaderText = "Ime i prezime";
-            ImePrezime.Name = "ImePrezime";
-            ImePrezime.ReadOnly = true;
+            Student.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Student.DataPropertyName = "ImePrezime";
+            Student.HeaderText = "Ime i prezime";
+            Student.Name = "Student";
+            Student.ReadOnly = true;
             // 
             // Prosjek
             // 
+            Prosjek.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Prosjek.DataPropertyName = "Prosjek";
             Prosjek.HeaderText = "Prosjek";
             Prosjek.Name = "Prosjek";
@@ -144,6 +129,7 @@
             // 
             // Aktivan
             // 
+            Aktivan.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Aktivan.DataPropertyName = "Aktivan";
             Aktivan.HeaderText = "Aktivan";
             Aktivan.Name = "Aktivan";
@@ -151,24 +137,43 @@
             // 
             // Uvjerenja
             // 
+            Uvjerenja.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Uvjerenja.HeaderText = "";
             Uvjerenja.Name = "Uvjerenja";
             Uvjerenja.ReadOnly = true;
             Uvjerenja.Text = "Uvjerenja";
             Uvjerenja.UseColumnTextForButtonValue = true;
             // 
+            // dtpDatumDo
+            // 
+            dtpDatumDo.Location = new Point(533, 6);
+            dtpDatumDo.Name = "dtpDatumDo";
+            dtpDatumDo.Size = new Size(200, 23);
+            dtpDatumDo.TabIndex = 2;
+            dtpDatumDo.ValueChanged += dtpDatumDo_ValueChanged;
+            // 
+            // cbSpol
+            // 
+            cbSpol.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSpol.FormattingEnabled = true;
+            cbSpol.Location = new Point(58, 6);
+            cbSpol.Name = "cbSpol";
+            cbSpol.Size = new Size(121, 23);
+            cbSpol.TabIndex = 4;
+            cbSpol.SelectedIndexChanged += cbSpol_SelectedIndexChanged;
+            // 
             // frmPretragaIB180079
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(777, 315);
+            ClientSize = new Size(745, 244);
             Controls.Add(cbSpol);
             Controls.Add(dgvStudenti);
             Controls.Add(dtpDatumDo);
             Controls.Add(dtpDatumOd);
-            Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(labl);
+            Controls.Add(label3);
+            Controls.Add(label1);
             Name = "frmPretragaIB180079";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pretraga";
@@ -180,18 +185,18 @@
 
         #endregion
 
-        private Label labl;
+        private Label label1;
         private Label label2;
         private Label label3;
         private DateTimePicker dtpDatumOd;
-        private DateTimePicker dtpDatumDo;
         private DataGridView dgvStudenti;
-        private ComboBox cbSpol;
         private DataGridViewTextBoxColumn BrojIndeksa;
-        private DataGridViewTextBoxColumn ImePrezime;
+        private DataGridViewTextBoxColumn Student;
         private DataGridViewTextBoxColumn Prosjek;
         private DataGridViewTextBoxColumn DatumRodjenja;
         private DataGridViewCheckBoxColumn Aktivan;
         private DataGridViewButtonColumn Uvjerenja;
+        private DateTimePicker dtpDatumDo;
+        private ComboBox cbSpol;
     }
 }

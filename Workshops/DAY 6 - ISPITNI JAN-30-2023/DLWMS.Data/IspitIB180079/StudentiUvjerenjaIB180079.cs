@@ -9,10 +9,9 @@ namespace DLWMS.Data.IspitIB180079
     public class StudentiUvjerenjaIB180079
     {
         public int Id { get; set; }
-
         public int StudentId { get; set; }
         public Student Student { get; set; }
-        public DateTime Vrijeme { get; set; }
+        public DateTime DatumVrijeme { get; set; }
         public string Vrsta { get; set; }
         public string Svrha { get; set; }
         public byte[] Uplatnica { get; set; }

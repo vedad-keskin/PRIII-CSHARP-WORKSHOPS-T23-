@@ -11,6 +11,10 @@ namespace DLWMS.Data
         public int Id { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
+
+        public string ImePrezime => Ime + " " + Prezime;
+
+        public double Prosjek => db.StudentiPredmeti.Where(x => Id == x.StudentId).Count() == 0 ? 0 :           db.StudentiPredmeti.Where(x => Id == x.StudentId).Average(x => x.Ocjena);
         public string BrojIndeksa { get; set; }
         public string Lozinka { get; set; }
         public string Email { get; set; }
@@ -18,11 +22,7 @@ namespace DLWMS.Data
         public int GodinaStudija { get; set; }
         public byte[] Slika { get; set; }
         public bool Aktivan { get; set; }
-        public Spol Spol { get; set; }
-
-        public string ImePrezime => $"{Ime} {Prezime}";
-
-        public double Prosjek => db.StudentiPredmeti.Where(x => x.StudentId == Id).ToList() == null ? 0 :   db.StudentiPredmeti.Where(x => x.StudentId == Id).Average(x => x.Ocjena);
+        public Spol Spol { get; set; }       
 
         public override string ToString()
         {

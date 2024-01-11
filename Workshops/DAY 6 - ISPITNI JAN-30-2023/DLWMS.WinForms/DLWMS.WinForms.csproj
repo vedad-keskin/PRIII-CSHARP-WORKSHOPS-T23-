@@ -8,12 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="IspitIB180079\rptIzvjestajIB180079.rdlc" />
     <None Remove="Izvjestaji\rptUvjerenje.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="IspitIB180079\rptIzvjestajIB180079.rdlc" />
     <EmbeddedResource Include="Izvjestaji\rptUvjerenje.rdlc" />
   </ItemGroup>
 

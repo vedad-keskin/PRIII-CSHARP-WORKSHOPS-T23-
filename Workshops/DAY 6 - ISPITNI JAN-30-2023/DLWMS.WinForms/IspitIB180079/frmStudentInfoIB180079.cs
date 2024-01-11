@@ -14,24 +14,28 @@ namespace DLWMS.WinForms.IspitIB180079
 {
     public partial class frmStudentInfoIB180079 : Form
     {
-        private Student student;
+        private Student odabraniStudent;
         DLWMSDbContext db = new DLWMSDbContext();
 
-   
 
-        public frmStudentInfoIB180079(Student student)
+        public frmStudentInfoIB180079(Student odabraniStudent)
         {
             InitializeComponent();
-            this.student = student;
+            this.odabraniStudent = odabraniStudent;
         }
 
         private void frmStudentInfoIB180079_Load(object sender, EventArgs e)
         {
-            this.Text = $"{student.BrojIndeksa}";
-            lblStudent.Text = $"{student}";
-            lblProsjek.Text = $"Prosjek: {db.StudentiPredmeti.Where(x => x.StudentId == student.Id).Average(x => x.Ocjena)}";
-            pbSlika.Image =  ImageHelper.FromByteToImage(student.Slika);
+            UcitajInfo();
 
+        }
+
+        private void UcitajInfo()
+        {
+            lblStudent.Text = odabraniStudent.ToString();
+            lblProsjek.Text = $"Prosjek: {odabraniStudent.Prosjek}";
+            pbSlika.Image = ImageHelper.FromByteToImage(odabraniStudent.Slika);
+            this.Text = odabraniStudent.BrojIndeksa;
         }
     }
 }
