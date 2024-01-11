@@ -18,7 +18,7 @@ namespace DLWMS.WinForms.IspitIB180079
     {
         DLWMSDbContext db = new DLWMSDbContext();
         private StudentiPredmetiIB180079 studentPredmet;
-        List<PredmetSeminarsi> seminarski;
+        List<PredmetSeminarskiIB180079> seminarski;
         int brojac = 0;
 
        
@@ -41,7 +41,7 @@ namespace DLWMS.WinForms.IspitIB180079
 
         private void UcitajSeminarske()
         {
-            seminarski = db.PredmetSeminarski.Include("Predmet").Include("Student").Where(x => x.StudentId == studentPredmet.StudentId && x.PredmetId == studentPredmet.PredmetId).ToList();
+            seminarski = db.PredmetSeminarskiIB180079.Include("Predmet").Include("Student").Where(x => x.StudentId == studentPredmet.StudentId && x.PredmetId == studentPredmet.PredmetId).ToList();
 
             if(seminarski.Count() != 0)
             {
@@ -79,7 +79,7 @@ namespace DLWMS.WinForms.IspitIB180079
         {
             if (Validiraj())
             {
-                var NoviSeminarski = new PredmetSeminarsi()
+                var NoviSeminarski = new PredmetSeminarskiIB180079()
                 {
                     StudentId = studentPredmet.StudentId,
                     PredmetId = studentPredmet.PredmetId,
@@ -87,7 +87,7 @@ namespace DLWMS.WinForms.IspitIB180079
                     Slika = ImageHelper.FromImageToByte(pbSlikaNova.Image),
                     Opis = txtOpisNovi.Text
                 };
-                db.PredmetSeminarski.Add(NoviSeminarski);
+                db.PredmetSeminarskiIB180079.Add(NoviSeminarski);
                 db.SaveChanges();
 
 
@@ -95,6 +95,7 @@ namespace DLWMS.WinForms.IspitIB180079
 
                 pbSlikaNova.Image = null;
                 txtOpisNovi.Clear();
+                btnNext.Enabled = true;
             }
         }
 

@@ -29,6 +29,6 @@ namespace DLWMS.Data
         public DbSet<Spol> Spolovi { get; set; }
         public DbSet<PredmetiIB180079> Predmeti { get; set; }
         public DbSet<StudentiPredmetiIB180079> StudentiPredmeti { get; set; }
-        public DbSet<PredmetSeminarsi> PredmetSeminarski { get; set; }
+        public DbSet<PredmetSeminarskiIB180079> PredmetSeminarskiIB180079 { get; set; }
     }
 }

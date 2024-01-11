@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLWMS.Data.IspitIB180079
 {
-    public class PredmetSeminarsi
+    public class PredmetSeminarskiIB180079
     {
         public int Id { get; set; }
         public int StudentId { get; set; }

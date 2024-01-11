@@ -127,46 +127,52 @@ namespace DLWMS.WinForms.IspitIB180079
         {
             if (Validiraj())
             {
-
-                await Task.Run(() =>
-                {
-                    var student = cbStudent.SelectedItem as Student;
-                    string info = "";
-                    var broj = int.Parse(txtBroj.Text);
-                    var random = new Random();
-
-                    for (int i = 0; i < broj; i++)
-                    {
-                        
-                        var NoviStudentPredmet = new StudentiPredmetiIB180079()
-                        {
-                            StudentId = student.Id,
-                            Datum = DateTime.Now,
-                            Ocjena = random.Next(6,11), // odakle kreces --> do jedan vise 
-                            PredmetId = random.Next(1,db.Predmeti.Count()+1)
-                        };
-
-                        var SviPredmeti = db.Predmeti.ToList();
-
-                        info += $"Za {student} dodat polozeni -> {SviPredmeti[NoviStudentPredmet.PredmetId -1]}    ({NoviStudentPredmet.Ocjena})  {Environment.NewLine}";
-
-                        
-
-                        db.StudentiPredmeti.Add(NoviStudentPredmet);
-                        db.SaveChanges();
-
-                    }
-
-                    Action action = () =>
-                    {
-                        UcitajStudente();
-                        txtInfo.Text = info;
-                        MessageBox.Show($"Generisano {broj} zapisa","Informacija",MessageBoxButtons.OK,MessageBoxIcon.Information );
-                    };
-                    BeginInvoke(action);
-                });
+                var student = cbStudent.SelectedItem as Student;
+                Thread t1 = new Thread(() => PokreniMultithreading(student));
+                t1.Start();
 
             }
+        }
+
+        private void PokreniMultithreading(Student student)
+        {
+            Thread.Sleep(500);
+      
+            string info = "";
+            var broj = int.Parse(txtBroj.Text);
+            var random = new Random();
+        
+            for (int i = 0; i < broj; i++)
+            {
+        
+                var NoviStudentPredmet = new StudentiPredmetiIB180079()
+                {
+                    StudentId = student.Id,
+                    Datum = DateTime.Now,
+                    Ocjena = random.Next(6, 11), // odakle kreces --> do jedan vise 
+                    PredmetId = random.Next(1, db.Predmeti.Count() + 1)
+                };
+        
+                var SviPredmeti = db.Predmeti.ToList();
+        
+                info += $"Za {student} dodat polozeni -> {SviPredmeti[NoviStudentPredmet.PredmetId - 1]}       ({NoviStudentPredmet.Ocjena})  {Environment.NewLine}";
+        
+        
+        
+                db.StudentiPredmeti.Add(NoviStudentPredmet);
+                db.SaveChanges();
+        
+            }
+        
+            Action action = () =>
+            {
+                UcitajStudente();
+                txtInfo.Text = info;
+                MessageBox.Show($"Generisano {broj} zapisa", "Informacija",     MessageBoxButtons.OK,MessageBoxIcon.Information);
+            };
+            BeginInvoke(action);
+        
+        
         }
 
         private bool Validiraj()
