@@ -34,7 +34,7 @@ namespace DLWMS.WinForms.IspitIB180079
 
         private void UcitajIspite()
         {
-            ispiti = db.KorisniciIspitiScan.Include("Predmet").Include("Student").Where(x=> x.StudentId == student.Id).ToList();
+            ispiti = db.KorisniciIspitiScanIB180079.Include("Predmet").Include("Student").Where(x=> x.StudentId == student.Id).ToList();
 
             if(ispiti != null)
             {
@@ -61,7 +61,7 @@ namespace DLWMS.WinForms.IspitIB180079
             {
                 if (MessageBox.Show("Da li ste sigurni da želite izbrisati ovaj zapis","Pitanje",MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    db.KorisniciIspitiScan.Remove(ispit);
+                    db.KorisniciIspitiScanIB180079.Remove(ispit);
                     db.SaveChanges();
                 }
             }

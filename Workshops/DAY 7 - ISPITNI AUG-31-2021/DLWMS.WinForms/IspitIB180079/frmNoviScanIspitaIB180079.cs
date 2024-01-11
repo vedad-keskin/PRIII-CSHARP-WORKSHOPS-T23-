@@ -50,7 +50,7 @@ namespace DLWMS.WinForms.IspitIB180079
                         Varanje = chbVaranje.Checked,
                         Slika = ImageHelper.FromImageToByte(pbSlika.Image)
                     };
-                    db.KorisniciIspitiScan.Add(NoviIspit);
+                    db.KorisniciIspitiScanIB180079.Add(NoviIspit);
                     db.SaveChanges();
                     DialogResult = DialogResult.OK;
                 }

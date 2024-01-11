@@ -98,9 +98,15 @@ namespace DLWMS.WinForms.IspitIB180079
 
         private void txtPretraga_TextChanged(object sender, EventArgs e)
         {
+            UcitajStudente();
+           
+        }
+
+        private void UcitajStudente()
+        {
             var filter = string.IsNullOrEmpty(txtPretraga.Text) ? "" : txtPretraga.Text.ToLower();
 
-            studenti = db.Studenti.Include("Spol").Where(x=> x.Ime.ToLower().Contains(filter)|| x.Prezime.ToLower().Contains(filter) || filter == "")   .ToList();
+            studenti = db.Studenti.Include("Spol").Where(x => x.Ime.ToLower().Contains(filter) || x.Prezime.ToLower().Contains(filter) || filter == "").ToList();
 
             if (studenti != null)
             {
@@ -138,12 +144,12 @@ namespace DLWMS.WinForms.IspitIB180079
                         }
                     }
 
-                    float prosjek = brojacJednogStudenta == 0 ? 0 : sumaJednogStudenta / brojacJednogStudenta; 
+                    float prosjek = brojacJednogStudenta == 0 ? 0 : sumaJednogStudenta / brojacJednogStudenta;
 
-                    if (prosjek > NajveciProsjek) 
+                    if (prosjek > NajveciProsjek)
                     {
-                        NajveciProsjek = prosjek; 
-                        NajveciStudent = student; 
+                        NajveciProsjek = prosjek;
+                        NajveciStudent = student;
                     }
 
 
@@ -169,29 +175,34 @@ namespace DLWMS.WinForms.IspitIB180079
         {
             if (Validiraj())
             {
-                List<string> samoglasnici = new List<string> { "u", "o", "i", "e", "a" }; 
-                List<string> suglasnici = new List<string> { "q", "w", "r", "t", "z", "p", "š", "đ", "s", "d", "f", "g", "h", "j", "k", "l", "č", "ć", "ž", "y", "x", "c", "v", "b", "n","m" }; 
-                List<string> znakovi = new List<string> { "?", "!", ">", "<", "*" }; 
-
-
-                await Task.Run(() =>
-                {
-                    string info = txtInfo.Text.ToLower();
-                    long brojacSamoglasnika = info.Where(x => samoglasnici.Contains(x.ToString())).Count();
-                    long brojacSuglasnika = info.Where(x => suglasnici.Contains(x.ToString())).Count();
-                    long brojacZnakova = info.Where(x => znakovi.Contains(x.ToString())).Count();
-
-
-                    Action action = () =>
-                    {
-                        lblSamoglasnici.Text = brojacSamoglasnika.ToString();
-                        lblSuglasnici.Text = brojacSuglasnika.ToString();
-                        lblZnakovi.Text = brojacZnakova.ToString();
-                    };
-                    BeginInvoke(action);
-
-                });
+                Thread t1 = new Thread(() => OdradiThreading());
+                t1.Start();
             }
+        }
+
+        private void OdradiThreading()
+        {
+            List<string> samoglasnici = new List<string> { "u", "o", "i", "e", "a" };
+            List<string> suglasnici = new List<string> { "q", "w", "r", "t", "z", "p", "š", "đ", "s", "d", "f", "g", "h", "j", "k", "l", "č", "ć", "ž", "y", "x", "c", "v", "b", "n", "m" };
+            List<string> znakovi = new List<string> { "?", "!", ">", "<", "*" };
+
+
+            
+            string info = txtInfo.Text.ToLower();
+            long brojacSamoglasnika = info.Where(x => samoglasnici.Contains(x.ToString())).Count();
+            long brojacSuglasnika = info.Where(x => suglasnici.Contains(x.ToString())).Count();
+            long brojacZnakova = info.Where(x => znakovi.Contains(x.ToString())).Count();
+
+
+            Action action = () =>
+            {
+                lblSamoglasnici.Text = brojacSamoglasnika.ToString();
+                lblSuglasnici.Text = brojacSuglasnika.ToString();
+                lblZnakovi.Text = brojacZnakova.ToString();
+            };
+            BeginInvoke(action);
+
+          
         }
 
         private bool Validiraj()
