@@ -21,7 +21,7 @@ namespace DLWMS.Data
 
         public override string ToString()
         {
-            return $"{Ime} {Prezime}";
+            return $"{Ime} {Prezime} ({DateTime.Now.Year - DatumRodjenja.Year})";
         }
     }  
 }

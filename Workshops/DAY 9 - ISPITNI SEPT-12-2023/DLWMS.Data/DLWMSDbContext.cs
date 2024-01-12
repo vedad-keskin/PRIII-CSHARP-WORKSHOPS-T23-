@@ -1,4 +1,4 @@
-﻿using DLWMS.Data.IB170074;
+﻿using DLWMS.Data.IspitIB180079;
 using Microsoft.EntityFrameworkCore;
 
 using System;
@@ -27,9 +27,8 @@ namespace DLWMS.Data
        
         public DbSet<Student> Studenti { get; set; }
         public DbSet<Spol> Spolovi { get; set; }
-        public DbSet<PredmetiIB170074> Predmeti {  get; set; }
-        public DbSet<StudentiPredmetiIB170074> StudentiPredmeti { get; set; }
+        public DbSet<PredmetiIB180079> Predmeti { get; set; }
+        public DbSet<StudentiPredmetiIB180079> StudentiPredmeti { get; set; }
         public DbSet<StudentiPorukeIB180079> StudentiPorukeIB180079 { get; set; }
-  
     }
 }

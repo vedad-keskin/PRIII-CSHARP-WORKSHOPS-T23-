@@ -1,4 +1,4 @@
-using DLWMS.WinForms.IB170074;
+using DLWMS.WinForms.IspitIB180079;
 
 namespace DLWMS.WinForms
 {
@@ -13,7 +13,7 @@ namespace DLWMS.WinForms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            var startnaForma = new frmPretragaIB170074();
+            var startnaForma = new frmPretragaIB180079();
             Application.Run(startnaForma);
         }
     }

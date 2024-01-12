@@ -1,5 +1,5 @@
 ﻿using DLWMS.Data;
-using DLWMS.Data.IB170074;
+using DLWMS.Data.IspitIB180079;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,18 +11,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DLWMS.WinForms.IB170074
+namespace DLWMS.WinForms.IspitIB180079
 {
-    public partial class frmPretragaIB170074 : Form
+    public partial class frmPretragaIB180079 : Form
     {
         DLWMSDbContext db = new DLWMSDbContext();
-        List<StudentiPredmetiIB170074> studentiPredmeti;
-        public frmPretragaIB170074()
+        List<StudentiPredmetiIB180079> studentiPredmeti;
+        public frmPretragaIB180079()
         {
             InitializeComponent();
         }
 
-        private void frmPretragaIB170074_Load(object sender, EventArgs e)
+        private void frmPretragaIB180079_Load(object sender, EventArgs e)
         {
             dgvStudentiPredmeti.AutoGenerateColumns = false;
             UcitajSve();
@@ -35,36 +35,28 @@ namespace DLWMS.WinForms.IB170074
 
             if (studentiPredmeti != null)
             {
-
-
                 dgvStudentiPredmeti.DataSource = null;
                 dgvStudentiPredmeti.DataSource = studentiPredmeti;
             }
-
         }
         private void UcitajStudente()
         {
-            // combox box koji rucno kucamo moze baciti null
 
-            var ocjenaOd = cbOcjenaOd.SelectedItem == null ? 6 : int.Parse(cbOcjenaOd.SelectedItem.ToString()); // 6 7 8 9 10
-            var ocjenaDo = cbOcjenaDo.SelectedItem == null ? 10 : int.Parse(cbOcjenaDo.SelectedItem.ToString()); // 10 9 8 7 6 
+            // checkbox ne vraca null --> dft false
+            var aktivan = chbAktivan.Checked;
 
-
-            // dtp ne moze baciti null jer je dft vrijednost danasnji datum
-
+            // datetimepickeri ne mogu vratiti null --> zato sto je dft uvijek danasnji datum
             var datumOd = dtpDatumOd.Value;
             var datumDo = dtpDatumDo.Value;
 
+            // rucni combobox koji moze baciti null -->
+            var ocjenaOd = cbOcjenaOd.SelectedItem == null ? 6 : int.Parse(cbOcjenaOd.SelectedItem.ToString());
+            var ocjenaDo = cbOcjenaDo.SelectedItem == null ? 10 : int.Parse(cbOcjenaDo.SelectedItem.ToString());
 
-            // chb ne moze baciti null jer je dft vrijednost false
-
-            var aktivan = chbAktivan.Checked;  // false true 
-
-
-            studentiPredmeti = db.StudentiPredmeti.Include("Predmet").Include("Student").Where(x =>
-            (x.Ocjena >= ocjenaOd && x.Ocjena <= ocjenaDo) &&
-            (x.Datum >= datumOd && x.Datum <= datumDo) &&
-            (x.Student.Aktivan == aktivan))
+            studentiPredmeti = db.StudentiPredmeti.Include("Predmet").Include("Student")
+                .Where(x => (x.Student.Aktivan == aktivan) &&
+                (x.Datum >= datumOd && x.Datum <= datumDo) &&
+                (x.Ocjena >= ocjenaOd && x.Ocjena <= ocjenaDo))
                 .ToList();
 
             if (studentiPredmeti != null)
@@ -75,21 +67,15 @@ namespace DLWMS.WinForms.IB170074
 
             if (studentiPredmeti.Count() == 0)
             {
-
                 if (aktivan == true)
                 {
-                    MessageBox.Show($"U periodu od {datumOd} do {datumDo} nema ocjene u opsegu od {ocjenaOd} do {ocjenaDo} za bilo kojeg aktivnog studenta", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"U periodu od {datumOd} - {datumDo} godine ne postoje evidentirane ocjene u opsegu {ocjenaOd} do {ocjenaDo} za bilo kojeg aktivnog studenta", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"U periodu od {datumOd} do {datumDo} nema ocjene u opsegu od {ocjenaOd} do {ocjenaDo} za bilo kojeg (ne)aktivnog studenta", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"U periodu od {datumOd} - {datumDo} godine ne postoje evidentirane ocjene u opsegu {ocjenaOd} do {ocjenaDo} za bilo kojeg neaktivnog studenta", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-
-
             }
-
-
         }
 
         private void cbOcjenaOd_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,19 +83,11 @@ namespace DLWMS.WinForms.IB170074
             UcitajStudente();
         }
 
+
         private void cbOcjenaDo_SelectedIndexChanged(object sender, EventArgs e)
         {
             UcitajStudente();
 
-        }
-
-
-
-
-
-        private void chbAktivan_CheckedChanged(object sender, EventArgs e)
-        {
-            UcitajStudente();
         }
 
         private void dtpDatumOd_ValueChanged(object sender, EventArgs e)
@@ -124,20 +102,21 @@ namespace DLWMS.WinForms.IB170074
 
         }
 
+        private void chbAktivan_CheckedChanged(object sender, EventArgs e)
+        {
+            UcitajStudente();
+
+        }
+
         private void dgvStudentiPredmeti_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var OdabraniStudentPredmet = studentiPredmeti[e.RowIndex];
 
-            if (e.ColumnIndex == 6)
+            if(e.ColumnIndex == 6)
             {
-               
-                frmPorukeIB180079 frmPoruke = new frmPorukeIB180079(OdabraniStudentPredmet.Student); // forma je napravljena
+                frmPorukeIB180079 frmPoruke = new frmPorukeIB180079(OdabraniStudentPredmet.Student);
                 frmPoruke.ShowDialog();
-
-
             }
-
-
 
         }
     }
