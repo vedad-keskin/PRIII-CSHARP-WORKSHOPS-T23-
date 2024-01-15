@@ -74,12 +74,11 @@ namespace DLWMS.WinForms.IspitIB170074
             var Aktivnost = cbAktivnost.SelectedItem == null ? "Svi" : cbAktivnost.SelectedItem.ToString();
 
 
-
-
-
             Studenti = db.Studenti.Include("Spol").Where(x => (x.Ime.ToLower().Contains(Filter) || x.Prezime.ToLower().Contains(Filter) || Filter == "")
             && (x.GodinaStudija.ToString() == GodinaStudija || GodinaStudija == "Sve") &&
-  (Aktivnost == "Svi" || (x.Aktivan == false && Aktivnost == "Neaktivni") || (x.Aktivan == true && Aktivnost == "Aktivni"))
+            (Aktivnost == "Svi" ||
+            (x.Aktivan == false && Aktivnost == "Neaktivni") ||
+            (x.Aktivan == true && Aktivnost == "Aktivni"))
             ).ToList();
 
             if (Studenti != null)
